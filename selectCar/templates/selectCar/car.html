@@ -2,8 +2,82 @@
 
 {% load static %}
 
-{% block title %} Home Page {% endblock %}
+{% block title %} Car Page {% endblock %}
 
 {% block body %}
 
+
+<section class="vehicles" id="vehicles" style="margin-top: 100px;">
+    <h1 class="heading"> {{car.car_name}} <span>vehicles</span> </h1>
+    
+    <div class="input-group input-group-lg mb-5">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Select Car</label>
+        </div>
+        <select class="custom-select custom-select-lg" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-1.png' %}" width="50%"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"> {{car.car_model}} </h5>
+                    <h5 class="card-title"> {{car.car_price}} </h5>
+                    <h6 class="card-title"> {{car.car_year}} </h6>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Visit official website</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChart" height="100px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+</script>
+
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 {% endblock %}
