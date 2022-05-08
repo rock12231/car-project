@@ -569,7 +569,7 @@ section{
 
 .footer{
     background: var(--light-yellow);
-    padding-bottom: 8rem;
+    padding-bottom: 4rem;
 }
 
 .footer .box-container{
