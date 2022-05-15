@@ -6,25 +6,27 @@
 
 {% block body %}
 
+<section class="vehicles" id="vehicles" style="margin-top: 75px;">
 
-<section class="vehicles" id="vehicles" style="margin-top: 100px;">
-    <!-- jinja code -->
-    <!-- <h1 class="heading"> {{car.car_name}} <span>vehicles</span> </h1> -->
     <h1 class="heading"> Dashboard <span></span> </h1>
-    <form action="/car" method="get">
-    <div class="input-group input-group-lg mb-5">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Select Car</label>
+
+    <form action="/car" method="GET" class="mb-2">
+        <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Please Select the option</label>
+            </div>
+            <select name="Brand" class="custom-select  custom-select-lg" id="inputGroupSelect01"
+                aria-label="Example select with button addon">
+                <option> Choose...</option>
+                <option value="Ford">Ford</option>
+                <option value="Tata">Tata</option>
+                <option value="Skoda">Skoda</option>
+            </select>
+            <input type="text" aria-label="First name" placeholder="Year" name="year" class="form-control">
+            <div class="input-group-append">
+                <input class="btn btn-outline-secondary" type="submit" value="Go">
+            </div>
         </div>
-        <select class="custom-select custom-select-lg" id="inputGroupSelect01" name="Brand">
-            <option >Choose...</option>
-            <option value="Ford">Ford</option>
-            <option value="Tata">Tata</option>
-            <option value="Skoda">Skoda</option>
-        </select>
-    </div>
-    <input name="year">
-    <input type="submit">
     </form>
 
     <div class="row">
@@ -44,7 +46,6 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <!-- <iframe src="/static/test.html" allowfullscreen="true"></iframe> -->
                     <canvas id="myChart" height="100px"></canvas>
                 </div>
             </div>
@@ -54,26 +55,57 @@
 </section>
 
 <script>
-    const labels = {{dataX |safe}};
 
     const data = {
-        labels: labels,
+        labels:  {{ dataX | safe}},
         datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: {{dataY |safe}},
+            type: 'bar',
+            label: 'Bar Dataset',
+            data: {{ dataY | safe}},
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)'
+                ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(255, 205, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                ]
+        }, {
+            type: 'line',
+            label: 'Line Dataset',
+            data: {{ dataY | safe}},
+            fill: false,
+            borderColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(255, 205, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+            ]
         }]
     };
 
     const config = {
-        type: 'bar',
+        type: 'scatter',
         data: data,
-        options: {}
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     };
-</script>
 
-<script>
     const myChart = new Chart(
         document.getElementById('myChart'),
         config

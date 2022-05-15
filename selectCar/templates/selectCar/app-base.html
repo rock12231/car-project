@@ -43,7 +43,7 @@
 
     <header data-aos="fade-right" class="header">
         <div id="menu-btn" class="fas fa-bars"></div>
-        <a href="#" class="logo"> <span>Car</span>SearchKaro</a>
+        <a href="{% url 'home' %}" class="logo"> <span>Car</span>SearchKaro</a>
         <nav class="navbar">
             <a href="#home">home</a>
             <a href="#vehicles">vehicles</a>
@@ -53,7 +53,7 @@
             <a href="#contact">contact</a>
         </nav>
         <div id="login-btn">
-            <button class="btn">login</button>
+            <!-- <button class="btn">login</button> -->
             <i class="far fa-user"></i>
         </div>
     </header>
@@ -81,7 +81,7 @@
     {% block body %}
 
     {% endblock %}
-    <section data-aos="flip-left" class="footer" id="footer">
+    <section class="footer" id="footer">
 
         <div class="box-container">
 
@@ -116,14 +116,6 @@
                 <a href="#"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
             </div>
 
-            <!-- <div class="box">
-                <h3>contact info</h3>
-                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>S
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
-                <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
-            </div> -->
             <div class="box">
                 <h3>Car brands</h3>
                 <a href="#"><i class="fas fa-car"></i> JAQUAR </a>

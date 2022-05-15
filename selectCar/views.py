@@ -22,10 +22,11 @@ class Car(View):
             'car_price': '$100,000',
         }
         
-        
         tempDF = df.copy()
 
         if request.GET.get("Brand"):
+            #msg=""
+            #img select.
             tempDF = tempDF[tempDF["Brand"]==request.GET["Brand"]].sort_values('selling_price', ascending=False)
 
         if request.GET.get("year"):
@@ -39,14 +40,44 @@ class Car(View):
         return render(request, 'selectCar/car.html',{'car':car, "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
     def post(self, request):
-        # select car & send to the template with the selected car info
-        # csvfile = request.FILES['csv_file']
-        # data = pd.read_csv(csvfile.name)
-        #You can create your custom dataframe here before converting it to html in next line
-        # data_html = data.to_html() 
-        # context = {'loaded_data': data_html}
-        # return render(request, "dataflow/table.html", context)
-        
-        # In the HTML page, use
-        # {{loaded_data | safe}}
         pass
+#         1. What is the Best Mileage Car's with Brand name
+
+# if request.GET.get("Brand"):
+#    tempDF = tempDF[tempDF["Brand"]==request.GET["Brand"]].sort_values('mileagev', ascending=False)
+
+# 2. Car's showcased according to the Selling Price Range (Min and Max)
+
+# if request.GET.get("Min"):
+#    tempDF = tempDF[(tempDF["mileagev"]>=request.GET["Min"])].sort_values('mileagev', ascending=False)
+
+# if request.Get.get("Max"):
+#    tempDF = tempDF[(tempDF["mileagev"]<=request.GET["Max"])].sort_values('mileagev', ascending=False)
+
+
+# 3. The Highest Selling Price of that particular year?
+
+# if request.GET.get("Year"):
+#    tempDF = tempDF[tempDF["Year"]==request.GET["Year"]].sort_values('mileagev', ascending=False)
+
+# 4. Which are the High Power and Low Selling Price car models?
+
+# if request.GET.get("Year"):
+#    tempDF = tempDF[tempDF["Year"]==request.GET["Year"]].sort_values('mileagev', ascending=False)
+
+# 5. Which are the Max Mileage and Max Power car models?
+
+# tempDF = tempDF.sort_values('mileagev', ascending=False).sort_values('max_powerv', ascending=False)
+
+# 6. Which are the Max Engine and Max Power car models?
+
+# tempDF = tempDF.sort_values('enginev', ascending=False).sort_values('max_powerv', ascending=False)
+
+
+# 7. Which are the Max Mileage and Max Engine car models?
+
+# tempDF = tempDF.sort_values('mileagev', ascending=False).sort_values('enginev', ascending=False)
+
+# 8. The Best Mileage Car models are?
+
+# tempDF = tempDF.sort_values('mileagev', ascending=False)
