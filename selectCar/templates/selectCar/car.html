@@ -10,19 +10,22 @@
 
     <h1 class="heading"> Dashboard <span></span> </h1>
 
-    <form action="/car" method="GET" class="mb-2">
+    <form action="/car/" method="POST" class="mb-2">
+        {% csrf_token %}
         <div class="input-group input-group-lg">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Please Select the option</label>
             </div>
             <select name="Brand" class="custom-select  custom-select-lg" id="inputGroupSelect01"
                 aria-label="Example select with button addon">
-                <option> Choose...</option>
-                <option value="Ford">Ford</option>
-                <option value="Tata">Tata</option>
-                <option value="Skoda">Skoda</option>
+                <option value="">Choose...</option>
+                {% for carname in car.cars %}
+                <option value="{{carname}}">{{carname}}</option>
+                {% endfor %}
+
             </select>
-            <input type="text" aria-label="First name" placeholder="Year" name="year" class="form-control">
+            <input name="year" type="text" placeholder="Year" class="form-control">
+            <input name="price" type="text" placeholder="Price" class="form-control">
             <div class="input-group-append">
                 <input class="btn btn-outline-secondary" type="submit" value="Go">
             </div>
@@ -30,6 +33,36 @@
     </form>
 
     <div class="row">
+        <div class="col-sm-12">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>year</th>
+                        <th>selling_price</th>
+                        <th>km_driven</th>
+                        <th>fuel</th>
+                        <th>seller_type</th>
+                        <th>transmission</th>
+                        <th>owner</th>
+                        <th>seats</th>
+                        <th>mileagev</th>
+                        <th>enginev</th>
+                        <th>max_powerv</th>
+                        <th>torquev</th>
+                        <th>Brand</th>
+                        <th>model_name</th>
+                    </tr>
+                </thead>
+
+            </table>
+            <script>
+                $('#example').DataTable({
+                    data: {{ dataT | safe}}
+                    });
+            </script>
+        </div>
         <div class="col-sm-4">
             <div class="card">
                 <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-1.png' %}" width="50%"
@@ -50,47 +83,61 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChart1" height="100px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChart2" height="100px"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 
 </section>
 
 <script>
-
+    //myChart
     const data = {
-        labels:  {{ dataX | safe}},
-        datasets: [{
-            type: 'bar',
-            label: 'Bar Dataset',
-            data: {{ dataY | safe}},
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(54, 162, 235)',
-                'rgb(153, 102, 255)'
-                ],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(255, 159, 64, 0.8)',
-                'rgba(255, 205, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-                ]
+        labels: {{ dataX | safe}},
+    datasets: [{
+        type: 'bar',
+        label: 'Bar Dataset',
+        data: {{ dataY | safe}},
+        borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)'
+    ],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 159, 64, 0.8)',
+        'rgba(255, 205, 86, 0.8)',
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(153, 102, 255, 0.8)',
+    ]
         }, {
-            type: 'line',
-            label: 'Line Dataset',
-            data: {{ dataY | safe}},
-            fill: false,
-            borderColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(255, 159, 64, 0.8)',
-                'rgba(255, 205, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-            ]
+        type: 'line',
+        label: 'Line Dataset',
+        data: {{ dataY | safe}},
+        fill: false,
+        borderColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 159, 64, 0.8)',
+        'rgba(255, 205, 86, 0.8)',
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(153, 102, 255, 0.8)',
+    ]
         }]
     };
 
@@ -110,5 +157,77 @@
         document.getElementById('myChart'),
         config
     );
+
+    //myChart1
+    const data1 = {
+        labels: {{ dataX | safe}},
+        datasets: [{
+            label: 'My First Dataset',
+            data:  {{ dataY | safe}},
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(75, 192, 192)',
+                'rgb(255, 205, 86)',
+                'rgb(201, 203, 207)',
+                'rgb(54, 162, 235)'
+            ]
+        }]
+    };
+
+    const config1 = {
+        type: 'polarArea',
+        data: data1,
+        options: {}
+    };
+
+    const myChart1 = new Chart(
+        document.getElementById('myChart1'),
+        config1
+    );
+
+    //myChart2
+
+    const data2 = {
+        labels: {{ dataX | safe}},
+        datasets: [{
+            label: 'My First Dataset',
+            data: {{ dataY | safe}},
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }, {
+            label: 'My Second Dataset',
+            data: [28, 48, 40, 19, 96, 27, 100],
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }]
+    };
+
+    const config2 = {
+        type: 'radar',
+        data: data2,
+        options: {
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            }
+        },
+    };
+
+    const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config2
+    );
+
 </script>
 {% endblock %}

@@ -33,6 +33,12 @@
     <!-- Chart.js cdn link -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+    <!-- Data Table -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+
     <!-- custom css file link  -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %} Home {% endblock %}</title>
@@ -132,14 +138,20 @@
 
     </section>
 
-    <!-- AOS INITIALIZE -->
-    <script>
-        AOS.init();
-    </script>
-    <!-- JS -->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+
 
 </body>
+<!-- AOS INITIALIZE -->
+<script>
+    AOS.init();
+</script>
+<!-- JS -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<!-- Dialogflow -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="Carinfo" agent-id="8cb4a865-8a88-4057-beaa-1cfcfb6468ec" language-code="en">
+</df-messenger>
 
 </html>
