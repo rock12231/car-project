@@ -65,7 +65,7 @@ class Car(View):
             tempDF = tempDF[tempDF["selling_price"]<int_year].sort_values('mileagev', ascending=False)
             tempDF = tempDF.head()
         
-        return render(request, 'selectCar/car.html',{"car":car, "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
+        return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
         
 def data1(request):
