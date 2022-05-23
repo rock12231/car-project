@@ -3,10 +3,11 @@ from selectCar import views
 from selectCar.views import Home, Car
 
 urlpatterns = [
+       # Home page URL
        path('', Home.as_view(), name='home'),
+       # Car page URL
        path('car/', Car.as_view(), name='car'),
-       
-       # All Data pages cars list
+       # Car page URL with dynamic data
        path('car/data1', views.data1, name='result1'),
        path('car/data2', views.data2, name='result2'),
        path('car/data3', views.data3, name='result3'),

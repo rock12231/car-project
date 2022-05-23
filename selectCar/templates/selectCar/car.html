@@ -1,15 +1,10 @@
 {% extends 'selectCar/app-base.html' %}
-
 {% load static %}
-
 {% block title %} Car Page {% endblock %}
-
 {% block body %}
 
 <section class="vehicles" id="vehicles" style="margin-top: 75px;">
-
     <h1 class="heading"> Dashboard <span></span> </h1>
-
     <form action="/car/" method="POST" class="mb-3">
         {% csrf_token %}
         <div class="input-group input-group-lg">
@@ -30,7 +25,6 @@
             </div>
         </div>
     </form>
-
     {% if car.msg %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{car.msg}}</strong>
@@ -39,7 +33,6 @@
         </button>
     </div>
     {% endif %}
-
     <div class="row mt-3">
         <div class="col-sm-4">
             <div class="card">
@@ -65,7 +58,7 @@
             <table id="example" class="hover" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th class="none">Id</th>
                         <th>Name</th>
                         <th>year</th>
                         <th>selling_price</th>
@@ -86,7 +79,6 @@
             </table>
         </div>
     </div>
-
 </section>
 
 <script>
@@ -94,6 +86,7 @@
     $('#example').DataTable({
         data: {{ dataT | safe}}
                         });
+
     //myChart Data
     const data = {
         labels: {{ dataX | safe }},
@@ -120,7 +113,6 @@
             }]
         };
 
-
     const config = {
         type: 'bar',
         data: data,
@@ -133,11 +125,10 @@
         },
     };
 
-
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
     );
-
 </script>
+
 {% endblock %}
