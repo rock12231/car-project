@@ -5,25 +5,30 @@ import pandas as pd
 import plotly.express as px
 import json
 
+# Read data from csv file
 df = pd.read_csv("selectCar/data/processed_cardekho.csv")
 
+# Current car details
 car: dict = {
-            'car_name': 'Toyota',
-            'car_model': 'Corolla',
-            'car_year': '2018',
-            'car_price': '$100,000',
+            'car_name': "",
+            'car_model': "",
+            'car_year': "",
+            'car_price': "",
             'brand': "",
             'year': "",
-            'cars':"",
-            'msg':""
+            'cars': "",
+            'msg': ""
             }
-# Create your views here.
+
+# Class Based rendering the index page
 class Home(View):
     def get(self, request):
-        # print("hello..........................................................")
         return render(request, 'selectCar/index.html')
 
+# Class Based rendering the Car page
 class Car(View):
+    
+    # Get Function to render the car page
     def get(self, request):
         tempDF = df.copy() 
         tempOptions = tempDF["Brand"].unique()
@@ -31,33 +36,39 @@ class Car(View):
         tempDF = tempDF.head()
         return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
+    # Post Function to render the car page
     def post(self, request):       
         tempDF = df.copy()
         tempOptions = tempDF["Brand"].unique()
         car['cars'] = tempOptions
         
+        # Filter the dataframe based on the selected car
         if request.POST["Brand"]:
             tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"]].sort_values('selling_price', ascending=False)
             tempDF = tempDF.head()
             
+        # Filter the dataframe based on the selected year
         if request.POST["year"] and len(request.POST["year"])==4:
-            print("Y................................")
             int_year = int(request.POST["year"])
             tempDF = tempDF[tempDF["year"]==int_year].sort_values('selling_price', ascending=False)
             tempDF = tempDF.head()
-            
+        
+        # filter the dataframe based on the selected Price  
         if request.POST["price"] and len(request.POST["price"])>4:
-            print("P................................")
             int_price = int(request.POST["price"])
             tempDF = tempDF[tempDF["selling_price"]<int_price].sort_values('mileagev', ascending=False)
             tempDF = tempDF.head()
-            
+        
+        # Wrong input message
         else :
             car['msg'] = "Please Enter Valid Year and Amount, Like 2018 and Amount between 1,00,000 to 10,00,000."
             tempDF = tempDF.head()
-        
+            
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
+  
     
+""" --->> Function basded rendering car page with dynamic data & pot Chart.JS Graph and Datatable <<--- """
+
 # 1. Which is the Best Mileage Car  
 def data1(request):
     tempDF = df.copy()
@@ -68,19 +79,19 @@ def data1(request):
 # 2. Car's showcased according to the Selling Price Range (Min)
 def data2(request):
     tempDF = df.copy()
-    tempDF = tempDF[(tempDF["mileagev"]>=400000)].sort_values('mileagev', ascending=False)
+    tempDF = tempDF[(tempDF["selling_price"]>=400000)].sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
-# 2. Car's showcased according to the Selling Price Range (Max)
+# 3. Car's showcased according to the Selling Price Range (Max)
 def data3(request):
     tempDF = df.copy()
-    tempDF = tempDF[(tempDF["mileagev"]<=800000)].sort_values('mileagev', ascending=False)
+    tempDF = tempDF[(tempDF["selling_price"]<=800000)].sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
-# 3. The Highest Selling Price cars?
+# 4. The Highest Selling Price cars?
 def data4(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('selling_price', ascending=False).head()
@@ -88,14 +99,14 @@ def data4(request):
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
-# 4. Which are the High Power and Low Selling Price car models?
+# 5. Which are the High Power and Low Selling Price car models?
 def data5(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('selling_price', ascending=True).head()
     tempDF = df.sort_values('max_powerv', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
-# 5. Which are the Max Mileage and Max Power car models?
+# 6. Which are the Max Mileage and Max Power car models?
 def data6(request):
     tempDF = df.copy()
     tempDF = df.sort_values('mileagev', ascending=False).head()
@@ -103,58 +114,22 @@ def data6(request):
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
-# 6. Which are the Max Engine and Max Power car models?
+# 7. Which are the Max Engine and Max Power car models?
 def data7(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('enginev', ascending=False).head()
     tempDF=  tempDF.sort_values('max_powerv', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
-# 7. Which are the Max Mileage and Max Engine car models?
+# 8. Which are the Max Mileage and Max Engine car models?
 def data8(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     tempDF=  tempDF.sort_values('enginev', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
-# 8. The Best Mileage Car models are?
+# 9. The Best Mileage Car models are?
 def data9(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
-
-
-
-        
-    #     # 1. What is the Best Mileage Car's with Brand name
-    #     # if request.GET.get("Brand"):
-    #         # tempDF = tempDF[tempDF["Brand"]==request.GET["Brand"]].sort_values('mileagev', ascending=False)
-    #     # 2. Car's showcased according to the Selling Price Range (Min and Max)
-    #     # if request.GET.get("Min"):
-    #         # tempDF = tempDF[(tempDF["mileagev"]>=request.GET["Min"])].sort_values('mileagev', ascending=False)
-    #     # if request.Get.get("Max"):
-    #         # tempDF = tempDF[(tempDF["mileagev"]<=request.GET["Max"])].sort_values('mileagev', ascending=False)
-    #     # 3. The Highest Selling Price of that particular year?
-    #     # if request.GET.get("Year"):
-    #         # tempDF = tempDF[tempDF["Year"]==request.GET["Year"]].sort_values('mileagev', ascending=False)
-    #     # 4. Which are the High Power and Low Selling Price car models?
-    #     # if request.GET.get("Year"):
-    #         # tempDF = tempDF[tempDF["Year"]==request.GET["Year"]].sort_values('mileagev', ascending=False)
-    #     # 5. Which are the Max Mileage and Max Power car models?
-    #     # if request.GET.get("Q5"):
-    #         # tempDF = tempDF.sort_values('mileagev', ascending=False).sort_values('max_powerv', ascending=False)
-    #     # 6. Which are the Max Engine and Max Power car models?
-    #     # if request.GET.get("Q6"):
-    #         # tempDF = tempDF.sort_values('enginev', ascending=False).sort_values('max_powerv', ascending=False)
-    #     # 7. Which are the Max Mileage and Max Engine car models?
-    #     # if request.GET.get("Q7"):
-    #         # tempDF = tempDF.sort_values('mileagev', ascending=False).sort_values('enginev', ascending=False)
-    #     # 8. The Best Mileage Car models are?
-    #     # if request.GET.get("Q8"):
-    #         # tempDF = tempDF.sort_values('mileagev', ascending=False)
-    #     if request.method == 'POST':
-    #     # if request.POST.get('Q1'):
-    #         tempDF = tempDF[tempDF["Q"]==request.GET["Q"]].sort_values('mileagev', ascending=False)
-    #         tempDF = tempDF.head()
-    #         return render(request, 'selectCar/car.html',{'car':car, "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
-    
