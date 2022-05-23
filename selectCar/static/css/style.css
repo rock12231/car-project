@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root{
-    --yellow:#f9d806;
-    --light-yellow:#ffee80;
+    --yellow: #E15D44;
+    --light-yellow:#FF6F61;
     --black:#130f40;
-    --light-color:#666;
+    --light-color:#212529;
     --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
     --border:.1rem solid rgba(0,0,0,.1);
 }
@@ -58,7 +58,7 @@ section{
     /* margin-top: 1rem; */
     padding:.8rem 3rem;
     background:var(--light-yellow);
-    color:var(--black);
+    color:#fff;
     cursor: pointer;
     font-size: 1.7rem;
     border-radius: .5rem;
@@ -755,3 +755,71 @@ section{
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+
+/* Questions accordion */
+
+ .accordion a {
+     position: relative;
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+     width: 100%;
+     padding: 1rem 3rem 1rem 1rem;
+     color: #7288a2;
+     font-size: 2rem;
+     font-weight: 400;
+     border-bottom: 1px solid #e5e5e5;
+ }
+
+
+ .accordion .content {
+     display: none;
+     padding: 1rem;
+     border-bottom: 1px solid #e5e5e5;
+     overflow: hidden;
+ }
+
+ /* CodePen Home Bootstrap 4 carousel multiple items per slide responsive */
+
+
+ .carousel {
+     width: 100%;
+ }
+
+ .slide-box {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ @media (min-width: 576px) and (max-width: 767.98px) {
+     .slide-box img {
+         -ms-flex: 0 0 50%;
+         flex: 0 0 50%;
+         max-width: 50%;
+     }
+ }
+
+ @media (min-width: 768px) and (max-width: 991.98px) {
+     .slide-box img {
+         -ms-flex: 0 0 33.3333%;
+         flex: 0 0 33.3333%;
+         max-width: 33.3333%;
+     }
+ }
+
+ @media (min-width: 992px) {
+     .slide-box img {
+         -ms-flex: 0 0 25%;
+         flex: 0 0 25%;
+         max-width: 25%;
+     }
+ }
+
+ .carousel-caption {
+     background-color: rgba(0, 0, 0, 0.5);
+     padding: 20px;
+     border-radius: .5rem;
+ }
