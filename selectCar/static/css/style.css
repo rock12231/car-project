@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root{
-    --yellow: #E15D44;
-    --light-yellow:#FF6F61;
+    --yellow:#fd7e14;
+    --light-yellow:#fef8f5;
     --black:#130f40;
     --light-color:#212529;
     --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
@@ -57,7 +57,7 @@ section{
     display: inline-block;
     /* margin-top: 1rem; */
     padding:.8rem 3rem;
-    background:var(--light-yellow);
+    background:var(--yellow);
     color:#fff;
     cursor: pointer;
     font-size: 1.7rem;
@@ -221,7 +221,8 @@ section{
     gap:1.5rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    background: #eee;
+    /* background: #eee; */
+    background: var(--light-yellow);
 }
 
 .icons-container .icons{
