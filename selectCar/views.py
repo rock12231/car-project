@@ -34,6 +34,23 @@ class Car(View):
         tempOptions = tempDF["Brand"].unique()
         car['cars'] = tempOptions  
         tempDF = tempDF.head()
+        # data = tempDF.to_dict(orient='records')
+        # for i in data[0]:
+        #     print(i,".......")
+            # car['car_name'] = i.car_name,
+            # car['car_model'] = i.car_model,
+            # car['car_year'] = i.car_year,
+            # car['car_price'] = i.car_price,
+        # for i in range(len(data)):
+            # if len(data) == i:
+                # car['car_name'] = list(data[i])
+            # if len(data) == 2:
+                # car['car_year'] = list(data[i])
+            # if data.index(i) == 3:
+                # car['car_price'] = list(data[i])
+            # if data.index(i) == 15:
+                # car['car_model'] = list(data[i])
+        # print(data[0],"........................")
         return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
     # Post Function to render the car page
@@ -74,6 +91,7 @@ def data1(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
+    car_data(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 2. Car's showcased according to the Selling Price Range (Min)
@@ -133,3 +151,12 @@ def data9(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
+
+def car_data(tempDF):
+    data = tempDF.to_dict(orient='records')
+    for i in data[0]:
+        print(i,".......")
+        # car['car_name'] = i.car_name,
+        # car['car_model'] = i.car_model,
+        # car['car_year'] = i.car_year,
+        # car['car_price'] = i.car_price,
