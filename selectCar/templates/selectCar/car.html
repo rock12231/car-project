@@ -34,7 +34,7 @@
     </div>
     {% endif %}
     <div class="row mt-3">
-        <div class="col-sm-4">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
                 <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-1.png' %}" width="50%"
                     alt="Card image cap">
@@ -46,10 +46,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="myChart" height="100px"></canvas>
+                    <canvas id="myChart" height="150px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChartLine" height="150px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChartPie"></canvas>
                 </div>
             </div>
         </div>
@@ -128,6 +142,85 @@
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
+    );
+
+    //Line Chart Data
+    const data1 = {
+        labels: {{ dataX | safe }},
+    datasets: [{
+        label: 'My First Dataset',
+        data: {{ dataY | safe }},
+        backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)'
+    ],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 159, 64, 0.8)',
+        'rgba(255, 205, 86, 0.8)',
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(153, 102, 255, 0.8)',
+    ],
+        borderWidth: 1
+            }]
+        };
+
+    const config1 = {
+        type: 'line',
+        data: data1,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+
+    const myChartLine = new Chart(
+        document.getElementById('myChartLine'),
+        config1
+    );
+
+    //Pie Chart Data
+    const data2 = {
+        labels: {{ dataX | safe }},
+    datasets: [{
+        label: 'My First Dataset',
+        data: {{ dataY | safe }},
+        backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)'
+    ],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 159, 64, 0.8)',
+        'rgba(255, 205, 86, 0.8)',
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(153, 102, 255, 0.8)',
+    ],
+        borderWidth: 1
+            }]
+        };
+
+    const config2 = {
+            type: 'pie',
+            data: data2,
+        };
+
+    const myChartPie = new Chart(
+        document.getElementById('myChartPie'),
+        config2
     );
 </script>
 
