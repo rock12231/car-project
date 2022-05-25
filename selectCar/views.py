@@ -11,14 +11,11 @@ df = pd.read_csv("selectCar/data/processed_cardekho.csv")
 
 # Current car details
 car: dict = {
-            'car_name': "",
-            'car_model': "",
-            'car_year': "",
-            'car_price': "",
             'brand': "",
             'year': "",
+            'price': "",
             'cars': "",
-            'msg': ""
+            'msg': "",
             }
 
 # Class Based rendering the index page
@@ -46,49 +43,48 @@ class Car(View):
         tempOptions = tempDF["Brand"].unique()
         car['cars'] = tempOptions
         car['msg'] = ""
-        
+        if request.POST["Brand"]:
+            car['brand'] = request.POST["Brand"]
+        if request.POST["price"]:
+            int_price = int(request.POST["price"])
+            car['price'] = int_price
+        if request.POST["year"] :
+            int_year = int(request.POST["year"])
+            car['year'] = int_year
+                    
         # Brand Year Price
         if request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
-            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["year"]==request.POST["year"] & tempDF["selling_price"]==request.POST["price"] ].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
+            tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["year"]==int_year) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
             print(tempDF,"Brand Year Price..................")
         
         # Brand Year
         elif request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4:
-            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["year"]==request.POST["year"]].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
+            tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["year"]==int_year)].sort_values('selling_price', ascending=False)
             print(tempDF,"Year Price....................")
         
         # Brand Price
         elif request.POST["Brand"] and request.POST["price"] and len(request.POST["price"])==4:
-            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["selling_price"]==request.POST["price"]].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
+            tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
             print(tempDF,"Brand Year....................")
         
         # Year Price
         elif request.POST["year"]  and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
-            tempDF = tempDF[tempDF["year"]==request.POST["year"] & tempDF["selling_price"]==request.POST["price"]].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
+            tempDF = tempDF[(tempDF["year"]==int_year) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
             print(tempDF,"Brand Price....................")
         
         # Filter the dataframe based on the selected car
         elif request.POST["Brand"]:
             tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"]].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
             print("Brand ........")
             
         # Filter the dataframe based on the selected year
         elif request.POST["year"] and len(request.POST["year"])==4:
-            int_year = int(request.POST["year"])
             tempDF = tempDF[tempDF["year"]==int_year].sort_values('selling_price', ascending=False)
-            tempDF = tempDF.head()
             print("Year ........")
         
         # filter the dataframe based on the selected Price  
         elif request.POST["price"] and len(request.POST["price"])>4:
-            int_price = int(request.POST["price"])
             tempDF = tempDF[tempDF["selling_price"]<int_price].sort_values('mileagev', ascending=False)
-            tempDF = tempDF.head()
             print("Price ........") 
                    
         # Wrong input message
@@ -96,11 +92,15 @@ class Car(View):
             car['msg'] = "Please Enter Valid Year and Amount, Like 2018 and Amount between 1,00,000 to 10,00,000."
             tempDF = tempDF.head()
             print("Wrong Input ........")
-            
+        
+        if tempDF.empty:
+            car['msg'] ="No Car Found with the given details"
+        
+        tempDF = tempDF.head()
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
   
     
-# """ --->> Function basded rendering car page with dynamic data & pot Chart.JS Graph and Datatable <<--- """
+# """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """
 
 # 1. Which is the Best Mileage Car  
 def data1(request):

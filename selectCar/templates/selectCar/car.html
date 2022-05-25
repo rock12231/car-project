@@ -13,13 +13,13 @@
             </div>
             <select name="Brand" class="custom-select  custom-select-lg" id="inputGroupSelect01"
                 aria-label="Example select with button addon">
-                <option value="">Choose...</option>
+                <option value="{{car.brand}}"> {% if car.brand %} {{car.brand}} {% else %} Choose {% endif %} </option>
                 {% for carname in car.cars %}
                 <option value="{{carname}}">{{carname}}</option>
                 {% endfor %}
             </select>
-            <input name="year" type="text" placeholder="Year" class="form-control">
-            <input name="price" type="text" placeholder="Price" class="form-control">
+            <input name="year" type="text" placeholder="Year" value="{{car.year}}" class="form-control">
+            <input name="price" type="text" placeholder="Price" value="{{car.price}}" class="form-control">
             <div class="input-group-append">
                 <input class="btn btn-outline-secondary" type="submit" value="Go">
             </div>
@@ -40,9 +40,17 @@
                     alt="Card image cap">
                 <div class="card-body">
                     {% for CarData in dataT.0 %}
-                    <span class="text-"> {{CarData}} <span class="font-weight-bold"> | </span></span>
+                    {% if forloop.counter0 == 1 %}
+                    <h5 class="card-title"><strong>{{CarData}}</strong></h5>
+                    {% endif %}
+                    {% if forloop.counter0 == 2 %}
+                    <h5 class="card-title">{{CarData}}</h5>
+                    {% endif %}
+                    {% if forloop.counter0 == 3 %}
+                    <h5 class="card-title">₹ {{CarData}}</h5>
+                    {% endif %}
                     {% endfor %}
-                    <div class="text-center mt-5 bt-5">
+                    <div class="text-center mt-2">
                         <a href="#" class="btn btn-primary text-center">Visit official website</a>
                     </div>
                 </div>
