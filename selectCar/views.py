@@ -1,4 +1,5 @@
 from ast import Str
+from asyncio.windows_events import NULL
 from django.shortcuts import render
 from django.views import View
 import pandas as pd
@@ -32,66 +33,80 @@ class Car(View):
     def get(self, request):
         tempDF = df.copy() 
         tempOptions = tempDF["Brand"].unique()
-        car['cars'] = tempOptions  
+        car['cars'] = tempOptions
+        car['msg'] = ""  
         tempDF = tempDF.head()
         # data = tempDF.to_dict(orient='records')
-        # for i in data[0]:
-        #     print(i,".......")
-            # car['car_name'] = i.car_name,
-            # car['car_model'] = i.car_model,
-            # car['car_year'] = i.car_year,
-            # car['car_price'] = i.car_price,
-        # for i in range(len(data)):
-            # if len(data) == i:
-                # car['car_name'] = list(data[i])
-            # if len(data) == 2:
-                # car['car_year'] = list(data[i])
-            # if data.index(i) == 3:
-                # car['car_price'] = list(data[i])
-            # if data.index(i) == 15:
-                # car['car_model'] = list(data[i])
         # print(data[0],"........................")
-        return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
+        return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
     # Post Function to render the car page
     def post(self, request):       
         tempDF = df.copy()
         tempOptions = tempDF["Brand"].unique()
         car['cars'] = tempOptions
+        car['msg'] = ""
+        
+        # Brand Year Price
+        if request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
+            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["year"]==request.POST["year"] & tempDF["selling_price"]==request.POST["price"] ].sort_values('selling_price', ascending=False)
+            tempDF = tempDF.head()
+            print(tempDF,"Brand Year Price..................")
+        
+        # Brand Year
+        elif request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4:
+            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["year"]==request.POST["year"]].sort_values('selling_price', ascending=False)
+            tempDF = tempDF.head()
+            print(tempDF,"Year Price....................")
+        
+        # Brand Price
+        elif request.POST["Brand"] and request.POST["price"] and len(request.POST["price"])==4:
+            tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"] & tempDF["selling_price"]==request.POST["price"]].sort_values('selling_price', ascending=False)
+            tempDF = tempDF.head()
+            print(tempDF,"Brand Year....................")
+        
+        # Year Price
+        elif request.POST["year"]  and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
+            tempDF = tempDF[tempDF["year"]==request.POST["year"] & tempDF["selling_price"]==request.POST["price"]].sort_values('selling_price', ascending=False)
+            tempDF = tempDF.head()
+            print(tempDF,"Brand Price....................")
         
         # Filter the dataframe based on the selected car
-        if request.POST["Brand"]:
+        elif request.POST["Brand"]:
             tempDF = tempDF[tempDF["Brand"]==request.POST["Brand"]].sort_values('selling_price', ascending=False)
             tempDF = tempDF.head()
+            print("Brand ........")
             
         # Filter the dataframe based on the selected year
-        if request.POST["year"] and len(request.POST["year"])==4:
+        elif request.POST["year"] and len(request.POST["year"])==4:
             int_year = int(request.POST["year"])
             tempDF = tempDF[tempDF["year"]==int_year].sort_values('selling_price', ascending=False)
             tempDF = tempDF.head()
+            print("Year ........")
         
         # filter the dataframe based on the selected Price  
-        if request.POST["price"] and len(request.POST["price"])>4:
+        elif request.POST["price"] and len(request.POST["price"])>4:
             int_price = int(request.POST["price"])
             tempDF = tempDF[tempDF["selling_price"]<int_price].sort_values('mileagev', ascending=False)
             tempDF = tempDF.head()
-        
+            print("Price ........") 
+                   
         # Wrong input message
         else :
             car['msg'] = "Please Enter Valid Year and Amount, Like 2018 and Amount between 1,00,000 to 10,00,000."
             tempDF = tempDF.head()
+            print("Wrong Input ........")
             
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
   
     
-""" --->> Function basded rendering car page with dynamic data & pot Chart.JS Graph and Datatable <<--- """
+# """ --->> Function basded rendering car page with dynamic data & pot Chart.JS Graph and Datatable <<--- """
 
 # 1. Which is the Best Mileage Car  
 def data1(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
-    car_data(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 2. Car's showcased according to the Selling Price Range (Min)
@@ -151,12 +166,3 @@ def data9(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
-
-def car_data(tempDF):
-    data = tempDF.to_dict(orient='records')
-    for i in data[0]:
-        print(i,".......")
-        # car['car_name'] = i.car_name,
-        # car['car_model'] = i.car_model,
-        # car['car_year'] = i.car_year,
-        # car['car_price'] = i.car_price,

@@ -55,7 +55,7 @@
             <a href="#vehicles">vehicles</a>
             <a href="#services">services</a>
             <a href="#featured">featured</a>
-            <a href="#question">Analysis</a>
+            <a href="#analysis">Analysis</a>
             <a href="#contact">contact</a>
         </nav>
         <div id="login-btn">
@@ -148,8 +148,26 @@
 <script src="{% static 'js/script.js' %}"></script>
 
 <!-- Dialogflow -->
+
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger intent="WELCOME" chat-title="Carinfo" agent-id="8cb4a865-8a88-4057-beaa-1cfcfb6468ec" language-code="en">
 </df-messenger>
+<script>
+    $(document).ready(function () {
 
+            // YOUR CODE (NOT RELATED TO DIALOGFLOW MESSENGER)
+
+            window.addEventListener('dfMessengerLoaded', function (event) {
+                $r1 = document.querySelector("df-messenger");
+                $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+                $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input"); //for other mods
+
+                var sheet = new CSSStyleSheet;
+                sheet.replaceSync(`div.chat-wrapper[opened="true"] { height: 400px }`);
+                $r2.shadowRoot.adoptedStyleSheets = [sheet];
+
+                // MORE OF YOUR DIALOGFLOW MESSENGER CODE
+            });
+        });
+</script>
 </html>
