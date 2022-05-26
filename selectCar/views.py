@@ -16,6 +16,7 @@ car: dict = {
             'price': "",
             'cars': "",
             'msg': "",
+            'dataSet':""
             }
 
 # Class Based rendering the index page
@@ -55,22 +56,22 @@ class Car(View):
         # Filter the dataframe based Brand Year Price
         if request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
             tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["year"]==int_year) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
-            # print(tempDF,"Brand Year Price..................")
+            print(tempDF,"Brand Year Price..................")
         
         # Filter the dataframe based Brand Year
         elif request.POST["Brand"] and request.POST["year"] and len(request.POST["year"])==4:
             tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["year"]==int_year)].sort_values('selling_price', ascending=False)
-            # print(tempDF,"Year Price....................")
+            print(tempDF,"Brand Year....................")
         
         # Filter the dataframe based Brand Price
         elif request.POST["Brand"] and request.POST["price"] and len(request.POST["price"])==4:
             tempDF = tempDF[(tempDF["Brand"]==request.POST["Brand"]) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
-            # print(tempDF,"Brand Year....................")
+            print(tempDF,"Brand Price....................")
         
-        # Filter the dataframe based Year Price only
+        # Filter the dataframe based Year Price
         elif request.POST["year"]  and len(request.POST["year"])==4 and request.POST["price"] and len(request.POST["price"])>4:
             tempDF = tempDF[(tempDF["year"]==int_year) & (tempDF["selling_price"]<int_price)].sort_values('selling_price', ascending=False)
-            # print(tempDF,"Brand Price....................")
+            print(tempDF,"Year Price....................")
         
         # Filter the dataframe based on Brand only
         elif request.POST["Brand"]:
@@ -95,11 +96,11 @@ class Car(View):
         
         # Check the dataframe is empty or not if empty then show the message
         if tempDF.empty:
-            car['msg'] ="No Car Found with the given details"
-            # print(len(tempDF),"Empty............")
+            car['msg'] = "No Car Found with the given details"
         
         # Collect the dataframe data and sort the head and send to render the car page
         tempDF = tempDF.head()
+        car['dataSet'] = len(tempDF)
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
   
     

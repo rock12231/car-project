@@ -21,7 +21,7 @@
             <input name="year" type="text" placeholder="Year" value="{{car.year}}" class="form-control">
             <input name="price" type="text" placeholder="Price" value="{{car.price}}" class="form-control">
             <div class="input-group-append">
-                <input class="btn btn-outline-secondary" type="submit" value="Go">
+                <input class="btn btn-outline-secondary font-weight-bold" type="submit" value="Search">
             </div>
         </div>
     </form>
@@ -34,11 +34,12 @@
     </div>
     {% endif %}
     <div class="row mt-3">
+        {% if car.dataSet > 0 %}
         <div class="col-lg-6 col-md-12 mb-3 mt-3">
             <div class="card" style="height: 316px;">
                 <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-1.png' %}" width="50%"
                     alt="Card image cap">
-                <div class="card-body">
+                <div class="card-body text-center">
                     {% for CarData in dataT.0 %}
                     {% if forloop.counter0 == 1 %}
                     <h5 class="card-title"><strong>{{CarData}}</strong></h5>
@@ -102,6 +103,15 @@
                 </thead>
             </table>
         </div>
+        {% else %}
+        <div class="col-lg-12 col-md-12 mb-3 mt-3">
+            <div class="card" style="height: 316px;">
+                <div class="card-body d-flex align-items-center">
+                    <img class="rounded mx-auto d-block" src="{% static 'image/nodata.png' %}" alt="No Data">
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 
@@ -224,9 +234,9 @@
         };
 
     const config2 = {
-            type: 'pie',
-            data: data2,
-        };
+        type: 'pie',
+        data: data2,
+    };
 
     const myChartPie = new Chart(
         document.getElementById('myChartPie'),
