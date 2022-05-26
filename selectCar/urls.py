@@ -5,8 +5,10 @@ from selectCar.views import Home, Car
 urlpatterns = [
        # Home page URL
        path('', Home.as_view(), name='home'),
+       
        # Car page URL
        path('car/', Car.as_view(), name='car'),
+       
        # Car page URL with dynamic data
        path('car/data1', views.data1, name='result1'),
        path('car/data2', views.data2, name='result2'),
