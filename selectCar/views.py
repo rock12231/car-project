@@ -56,6 +56,7 @@ class Car(View):
         car['cars'] = tempOptions
         car['msg'] = ""  
         tempDF = tempDF.head()
+        car['dataSet'] = len(tempDF)
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
     
     # Post Function to render the car page
