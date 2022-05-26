@@ -50,14 +50,16 @@
     <header data-aos="fade-right" class="header">
         <div id="menu-btn" class="fas fa-bars"></div>
         <a href="{% url 'home' %}" class="logo"> <span>Car</span>SearchKaro</a>
+
         <nav class="navbar">
             <a href="#home">home</a>
-            <a href="#vehicles">vehicles</a>
+            <a href="#vehicles">popular vehicles</a>
+            <a href="#question">Analysis</a>
             <a href="#services">services</a>
             <a href="#featured">featured</a>
-            <a href="#analysis">Analysis</a>
             <a href="#contact">contact</a>
         </nav>
+
         <div id="login-btn">
             <!-- <button class="btn">login</button> -->
             <i class="far fa-user"></i>
@@ -154,24 +156,22 @@
 </df-messenger> -->
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
-  chat-icon="https:&#x2F;&#x2F;lh3.googleusercontent.com&#x2F;pKNUPiNqVbmZpLLjmE3N3OKRODBFg2t-LLCHoRBFmktGxKVTKAguF32oU4Tdj9_ofEaMtg=s100"
-  intent="WELCOME"
-  chat-title="Mr.Carbot"
-  agent-id="c636f753-d477-4217-be4d-bcc1f748d7e8"
-  language-code="en"
-></df-messenger>
+    chat-icon="https:&#x2F;&#x2F;lh3.googleusercontent.com&#x2F;pKNUPiNqVbmZpLLjmE3N3OKRODBFg2t-LLCHoRBFmktGxKVTKAguF32oU4Tdj9_ofEaMtg=s100"
+    intent="WELCOME" chat-title="Mr.Carbot" agent-id="c636f753-d477-4217-be4d-bcc1f748d7e8" language-code="en">
+</df-messenger>
 <script>
     $(document).ready(function () {
-            // YOUR CODE (NOT RELATED TO DIALOGFLOW MESSENGER)
-            window.addEventListener('dfMessengerLoaded', function (event) {
-                $r1 = document.querySelector("df-messenger");
-                $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
-                $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input");
+        // YOUR CODE (NOT RELATED TO DIALOGFLOW MESSENGER)
+        window.addEventListener('dfMessengerLoaded', function (event) {
+            $r1 = document.querySelector("df-messenger");
+            $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+            $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input");
 
-                var sheet = new CSSStyleSheet;
-                sheet.replaceSync(`div.chat-wrapper[opened="true"] { height: 400px }`);
-                $r2.shadowRoot.adoptedStyleSheets = [sheet];
-            });
+            var sheet = new CSSStyleSheet;
+            sheet.replaceSync(`div.chat-wrapper[opened="true"] { height: 400px }`);
+            $r2.shadowRoot.adoptedStyleSheets = [sheet];
         });
+    });
 </script>
+
 </html>
