@@ -37,8 +37,27 @@
         {% if car.dataSet > 0 %}
         <div class="col-lg-6 col-md-12 mb-3 mt-3">
             <div class="card" style="height: 316px;">
-                <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-1.png' %}" width="50%"
-                    alt="Card image cap">
+                {% if request.path == '/car/data1' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% "alt="Card image cap">
+                {% elif request.path == '/car/data2' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data3' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-3.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data4' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-3.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data5' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data6' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data7' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data8' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% elif request.path == '/car/data9' %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-6.png' %}" width="40% " alt="Card image cap">
+                {% else %}
+                    <img class="mt-4 rounded mx-auto d-block" src="{% static 'image/car-2.png' %}" width="40% " alt="Card image cap">
+                {% endif %}
                 <div class="card-body text-center">
                     {% for CarData in dataT.0 %}
                     {% if forloop.counter0 == 1 %}
@@ -79,8 +98,8 @@
             </div>
         </div>
         <hr style="width:100%;text-align:center">
-        <div class="col-sm-12 mt-4">
-            <table id="example" class="hover table" style="width:100%">
+        <div class="col-lg-12 col-md-12 mb-3 mt-3">
+            <table id="example" class="hover table table-responsive" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>

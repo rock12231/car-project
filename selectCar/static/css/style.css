@@ -48,7 +48,7 @@ section{
     bottom:1rem; left:0;
     height: 100%;
     width: 100%;
-    background: var(--light-yellow);
+    background: var(--yellow);
     z-index: -1;
     clip-path: polygon(0 90%, 100% 80%, 100% 100%, 0% 100%);
 }

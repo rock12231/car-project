@@ -17,7 +17,8 @@ car: dict = {
             'price': "",
             'cars': "",
             'msg': "",
-            'dataSet':""
+            'dataSet': "",
+            'alert': ""
             }
 
 # Class Based rendering the index page
@@ -40,7 +41,10 @@ class Home(View):
             objects = ContactUs()
             data = ContactUs.objects.create(first_name=first_name, last_name=Last_name, User_email=email, User_subject=subject, User_message=message)
             data.save()
-        return render(request, 'selectCar/index.html')
+            car['alert'] = "Thankyou for contacting us! Our team will get back to you soon."
+        else:
+            car['alert'] = "Please fill the form again."
+        return render(request, 'selectCar/index.html',{'car':car})
      
 # Class Based rendering the Car page
 class Car(View):
