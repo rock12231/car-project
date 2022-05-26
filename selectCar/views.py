@@ -5,6 +5,7 @@ from django.views import View
 import pandas as pd
 import plotly.express as px
 import json
+from .models import ContactUs
 
 # Read data from csv file
 df = pd.read_csv("selectCar/data/processed_cardekho.csv")
@@ -21,9 +22,26 @@ car: dict = {
 
 # Class Based rendering the index page
 class Home(View):
+    
     def get(self, request):
         return render(request, 'selectCar/index.html')
 
+    def post(self, request):
+        if request.method == 'POST':
+            name = request.POST['name']
+            if name.find(' ') != -1:
+                first_name, Last_name = name.split(' ', 1)
+            else:
+                first_name = name
+                Last_name = name
+            email = request.POST['email']
+            subject = request.POST['subject']
+            message = request.POST['message']
+            objects = ContactUs()
+            data = ContactUs.objects.create(first_name=first_name, last_name=Last_name, User_email=email, User_subject=subject, User_message=message)
+            data.save()
+        return render(request, 'selectCar/index.html')
+     
 # Class Based rendering the Car page
 class Car(View):
     
