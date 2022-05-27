@@ -8,8 +8,11 @@ import plotly.express as px
 import json
 from .models import ContactUs
 import pickle
+import numpy as np
+
 # Read data from csv file
 df = pd.read_csv("selectCar/data/processed_cardekho.csv")
+model = pickle.load(open('selectCar/data/deepmodel.sav', "rb"))
 
 # Current car details
 car: dict = {
@@ -127,6 +130,7 @@ class Car(View):
         car['dataSet'] = len(tempDF)
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
   
+  
 # Prediction
 class Prediction(View):
     
@@ -167,7 +171,6 @@ class Prediction(View):
             print(brand)
 	    
         UserInput = []
-        model = pickle.load('selectCar/data/deepmodel.sav')
         UserInput.append(km_driven)
         UserInput.append(transmission)
         UserInput.append(owner)
@@ -175,9 +178,13 @@ class Prediction(View):
         UserInput.append(engine)
         UserInput.append(max_power)
         UserInput.append(brand)
-        result = model.predict(UserInput)
+        l=np.array([UserInput])
+        l.reshape(-1, 1)
+
+        result = model.predict(l)
+
         return render(request, 'selectCar/prediction.html',{'result':result})
-        
+  
 
     # """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """ #
 

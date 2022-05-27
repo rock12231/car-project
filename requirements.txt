@@ -21,4 +21,5 @@ virtualenv==20.10.0
 virtualenv-clone==0.5.7
 waitress==2.0.0
 whitenoise==6.1.0
+numpy==1.22.3
 
