@@ -1,12 +1,13 @@
 from ast import Str
 from asyncio.windows_events import NULL
+from copyreg import pickle
 from django.shortcuts import render
 from django.views import View
 import pandas as pd
 import plotly.express as px
 import json
 from .models import ContactUs
-
+import pickle
 # Read data from csv file
 df = pd.read_csv("selectCar/data/processed_cardekho.csv")
 
@@ -150,7 +151,7 @@ class Prediction(View):
             print(owner)
             
         if request.POST["mileage"]:
-            mileage = int(request.POST["mileage"])
+            mileage = float(request.POST["mileage"])
             print(mileage)
             
         if request.POST["engine"]:
@@ -164,18 +165,17 @@ class Prediction(View):
         if request.POST["brand"]:
             brand = int(request.POST["brand"])
             print(brand)
-
-	    # model=joblib.load('depmodel.sav')
-	    # l=[]
-	    # l.append(selling_price)
-	    # l.append(km_driven)
-	    # l.append(transmission)
-	    # l.append(owner)
-	    # l.append(mileage)
-	    # l.append(engine)
-	    # l.append(max_power)
-	    # l.append(brand)
-	    # result = model.predict([l])
+	    
+        UserInput = []
+        model = pickle.load('selectCar/data/deepmodel.sav')
+        UserInput.append(km_driven)
+        UserInput.append(transmission)
+        UserInput.append(owner)
+        UserInput.append(mileage)
+        UserInput.append(engine)
+        UserInput.append(max_power)
+        UserInput.append(brand)
+        result = model.predict([UserInput])
         return render(request, 'selectCar/prediction.html',{'result':result})
 
   
@@ -241,10 +241,4 @@ def data8(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     tempDF=  tempDF.sort_values('enginev', ascending=False).head()
-    return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
-
-# 9. The Best Mileage Car models are?
-def data9(request):
-    tempDF = df.copy()
-    tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})

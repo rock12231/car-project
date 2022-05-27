@@ -1,0 +1,475 @@
+{% extends 'selectCar/app-base.html' %}
+{% load static %}
+{% block title %} Home Page {% endblock %}
+{% block body %}
+
+<section data-aos="flip-left" class="home" id="home">
+    <h3 data-speed="-2" class="">find your car</h3>
+    <img data-speed="5" class="" src="{% static 'image/home-img.png' %}" alt="">
+    <a data-speed="7" href="{% url 'car' %}" class="btn">explore cars</a>
+</section>
+
+<section class="icons-container">
+    <div data-aos="fade-up" data-aos-duration="1500" class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>150+</h3>
+            <p>brands</p>
+        </div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="2000" class="icons">
+        <i class="fas fa-car"></i>
+        <div class="content">
+            <h3>Essential</h3>
+            <p>questions for analysis</p>
+            <!-- data filter -->
+        </div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="2500" class="icons">
+        <i class="fas fa-users"></i>
+        <div class="content">
+            <h3>Pleasing</h3>
+            <p>data visuals</p>
+        </div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="3000" class="icons">
+        <i class="fas fa-car"></i>
+        <div class="content">
+            <h3>1500+</h3>
+            <p>new cars</p>
+        </div>
+    </div>
+</section>
+
+<section class="vehicles" id="vehicles">
+    <h1 class="heading"> popular <span>vehicles</span> </h1>
+    <div class="swiper vehicles-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="{% static 'image/vehicle-1.png' %}" alt="">
+                <div class="content">
+                    <h3>Ford Endeavour 3.2 Titanium
+                    </h3>
+                    <div class="price"> <span>price : </span> $3,250,000
+                        /- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span> -->
+                        2018
+                        <span class="fas fa-circle"></span> regular
+                        <span class="fas fa-circle"></span> Diesel
+                        <span class="fas fa-circle"></span> 10.91 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-3.png' %}" alt="">
+                <div class="content">
+                    <h3>Maruti Ertiga ZDI Plus</h3>
+                    <div class="price"> <span>price : </span> $1,200,000/- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span>  -->
+                        2019
+                        <span class="fas fa-circle"></span> regular
+                        <span class="fas fa-circle"></span> Diesel
+                        <span class="fas fa-circle"></span> 25.47 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/vehicle-3.png' %}" alt="">
+                <div class="content">
+                    <h3>BMW X7 XDrive 30d DPE</h3>
+                    <div class="price"> <span>price : </span> $7,200,000/- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span>  -->
+                        2020
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> Diesel
+                        <span class="fas fa-circle"></span> 13.38 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <!-- <img src="{% static 'image/vehicle-4.png' %}" alt=""> -->
+
+                <img src="{% static 'image/car-6.png' %}" alt="">
+                <div class="content">
+                    <h3>Hyundai Creta 1.6 CRDi
+                    </h3>
+                    <div class="price"> <span>price : </span> $1,950,000/- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span>  -->
+                        2020
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> Diesel
+                        <span class="fas fa-circle"></span> 17.01 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/vehicle-5.png' %}" alt="">
+                <div class="content">
+                    <h3>Jeep Wrangler 3.6</h3>
+                    <div class="price"> <span>price : </span> $4,100,000/- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span>  -->
+                        2017
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 9.5 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <!-- <img src="{% static 'image/vehicle-6.png' %}" alt=""> -->
+
+                <img src="{% static 'image/car-1.png' %}" alt="">
+                <div class="content">
+                    <h3>Mercedes-Benz S-Class 350</h3>
+                    <div class="price"> <span>price : </span> $6,000,000/- </div>
+                    <p>
+                        <!-- new -->
+                        <!-- <span class="fas fa-circle"></span>  -->
+                        2017
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 13.5 Mlg
+                    </p>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<section class="vehicles" id="question">
+    <h1 class="heading"> Our <span>Questions</span> </h1>
+    <div class="accordion">
+        <div class="accordion-item ">
+            <a href="{% url 'result1' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp; Which is
+                the Best Mileage Car </a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result2' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Car's
+                showcased according to the Selling Price Range (Min)</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result3' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Car's
+                showcased according to the Selling Price Range (Max)</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result4' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;The Highest
+                Selling Price cars?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result5' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Which are
+                the High Power and Low Selling Price car models?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result6' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Which are
+                the Max Mileage and Max Power car models?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result7' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Which are
+                the Max Engine and Max Power car models?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result8' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;Which are
+                the Max Mileage and Max Engine car models?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="{% url 'result9' %}" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;The Best
+                Mileage Car models are?</a>
+        </div>
+        <div class="accordion-item">
+            <a href="" class="hvr-forward"><i class="far fa-hand-point-right"></i> &nbsp;India market size of
+                Automobiles by 2030?</a>
+        </div>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <h1 class="heading"> our <span>services</span> </h1>
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-car"></i>
+            <h3>car selling</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+        <div class="box">
+            <i class="fas fa-tools"></i>
+            <h3>parts repair</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+        <div class="box">
+            <i class="fas fa-car-crash"></i>
+            <h3>car insurance</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+        <div class="box">
+            <i class="fas fa-car-battery"></i>
+            <h3>battery replacement</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+        <div class="box">
+            <i class="fas fa-gas-pump"></i>
+            <h3>oil change</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+        <div class="box">
+            <i class="fas fa-headset"></i>
+            <h3>chatbot support</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+    </div>
+</section>
+
+<section class="featured" id="featured">
+    <h1 class="heading"> <span>featured</span> cars </h1>
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-1.png' %}" alt="">
+                <div class="content">
+                    <h3>Honda Civic ZX</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$2,000,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-2.png' %}" alt="">
+                <div class="content">
+                    <h3>Tata Harrier XZ plus</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$1,500,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-3.png' %}" alt="">
+                <div class="content">
+                    <h3>Ford Endeavour 2.2 Titanium</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star-half-alt"></i> -->
+                    </div>
+                    <div class="price">$2,250,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-4.png' %}" alt="">
+                <div class="content">
+                    <h3>Hyundai Tuscan 2.0 e-VGt
+                    </h3>
+                    <div class="stars">
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$1,950,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-5.png' %}" alt="">
+                <div class="content">
+                    <h3>Maruti XL6 Alpha</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star-half-alt"></i> -->
+                    </div>
+                    <div class="price">$ 1,100,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <!-- <img src="{% static 'image/car-6.png' %}" alt=""> -->
+
+                <img src="{% static 'image/vehicle-4.png' %}" alt="">
+                <div class="content">
+                    <h3>Jaguar XF 3.0 S Premium Luxury</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$3,500,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-7.png' %}" alt="">
+                <div class="content">
+                    <h3>Kia Seltos HTX Plus AT D </h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$1,900,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'image/car-8.png' %}" alt="">
+                <div class="content">
+                    <h3>Mahindra XUV500 W11 AWD</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">$1,600,000/-</div>
+                    <a href="#" class="btn">check out</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<section class="contact" id="analysis">
+    <h1 class="heading"><span>Popular </span> Brands</h1>
+    <div class="container">
+        <div class="row">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-none d-lg-block">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/maruti.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mahindra.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mercedes-benz.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-none d-md-block d-lg-none">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/mahindra.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mercedes-benz.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-none d-sm-block d-md-none">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/mercedes-benz.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-block d-sm-none">
+                            <img class="d-block w-100" src="{% static 'brandimage/honda.jpg' %} alt=" First slide">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-none d-lg-block">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/mercedes-benz.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/maruti.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mahindra.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-none d-md-block d-lg-none">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/maruti.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mahindra.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-none d-sm-block d-md-none">
+                            <div class="slide-box">
+                                <img src="{% static 'brandimage/honda.jpg' %}" alt="First slide">
+                                <img src="{% static 'brandimage/mahindra.jpg' %}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="d-block d-sm-none">
+                            <img class="d-block w-100" src="{% static 'brandimage/mahindra.jpg' %}" alt="Second slide">
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h1 class="heading"><span>We are</span> here to help!</h1>
+    <div class="row">
+        <iframe class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1632137920043!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy"></iframe>
+        <form action=" " method="POST">
+            {% csrf_token %}
+            <h3>get in touch</h3>
+            <input type="text" name="name" placeholder="your name" class="box">
+            <input type="email" name="email" placeholder="your email" class="box">
+            <input type="text" name="subject" placeholder="subject" class="box">
+            <textarea name="message" placeholder="your message" class="box" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn">
+        </form>
+    </div>
+</section>
+
+{% endblock %}

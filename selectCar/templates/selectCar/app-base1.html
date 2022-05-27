@@ -1,0 +1,177 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- aos Animaton -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://proicons.netlify.app/css/icons.min.css">
+
+    <!-- Chart.js cdn link -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Data Table -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %} Home {% endblock %}</title>
+
+</head>
+
+<body>
+
+    <header data-aos="fade-right" class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="{% url 'home' %}" class="logo"> <span>Car</span>SearchKaro</a>
+
+        <nav class="navbar">
+            <a href="/#home">home</a>
+            <a href="/#vehicles">popular vehicles</a>
+            <a href="/#question">Analysis</a>
+            <a href="/#services">services</a>
+            <a href="/#featured">featured</a>
+            <a href="/#contact">contact</a>
+        </nav>
+
+        <div id="login-btn">
+            <!-- <button class="btn">login</button> -->
+            <i class="far fa-user"></i>
+        </div>
+    </header>
+
+    <div class="login-form-container">
+
+        <span id="close-login-form" class="fas fa-times"></span>
+
+        <form action="">
+            <h3>user login</h3>
+            <input type="email" placeholder="email" class="box">
+            <input type="password" placeholder="password" class="box">
+            <p> forget your password <a href="#">click here</a> </p>
+            <input type="submit" value="login" class="btn">
+            <p>or login with</p>
+            <div class="buttons">
+                <a href="#" class="btn"> google </a>
+                <a href="#" class="btn"> facebook </a>
+            </div>
+            <p> don't have an account <a href="#">create one</a> </p>
+        </form>
+
+    </div>
+
+    {% block body %}
+
+    {% endblock %}
+    <section class="footer" id="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>Car brands</h3>
+                <a href="#"> <i class="fas fa-car"></i> TOYOTA </a>
+                <a href="#"> <i class="fas fa-car"></i> MARUTI </a>
+                <a href="#"> <i class="fas fa-car"></i> COROLLA </a>
+                <a href="#"> <i class="fas fa-car"></i> MERCEDES </a>
+                <a href="#"> <i class="fas fa-car"></i> HONDA </a>
+                <a href="#"> <i class="fas fa-car"></i> SKODA </a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> home </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> vehicles </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> services </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> featured </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Analysis </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> contact </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <!-- <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a> -->
+                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fas fa-envelope"></i> carsearchakro@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+            </div>
+
+            <div class="box">
+                <h3>Car brands</h3>
+                <a href="#"><i class="fas fa-car"></i> JAQUAR </a>
+                <a href="#"><i class="fas fa-car"></i>VOLKSWAGEN</a>
+                <a href="#"><i class="fas fa-car"></i>BMW </a>
+                <a href="#"><i class="fas fa-car"></i>AUDI </a>
+                <a href="#"><i class="fas fa-car"></i> FORD </a>
+                <a href="#"><i class="fas fa-car"></i> MAHINDRA </a>
+            </div>
+
+        </div>
+
+        <div class="credit"> <i class="far fa-copyright"></i> CarSearchKaro <span> Since 2022 </span></div>
+
+    </section>
+
+</body>
+<!-- AOS INITIALIZE -->
+<script>
+    AOS.init();
+</script>
+<!-- JS -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<!-- Dialogflow -->
+
+<!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="Carinfo" agent-id="8cb4a865-8a88-4057-beaa-1cfcfb6468ec" language-code="en">
+</df-messenger> -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+    chat-icon="https:&#x2F;&#x2F;lh3.googleusercontent.com&#x2F;pKNUPiNqVbmZpLLjmE3N3OKRODBFg2t-LLCHoRBFmktGxKVTKAguF32oU4Tdj9_ofEaMtg=s100"
+    intent="WELCOME" chat-title="Mr.Carbot" agent-id="c636f753-d477-4217-be4d-bcc1f748d7e8" language-code="en">
+</df-messenger>
+<script>
+    $(document).ready(function () {
+        // YOUR CODE (NOT RELATED TO DIALOGFLOW MESSENGER)
+        window.addEventListener('dfMessengerLoaded', function (event) {
+            $r1 = document.querySelector("df-messenger");
+            $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+            $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input");
+
+            var sheet = new CSSStyleSheet;
+            sheet.replaceSync(`div.chat-wrapper[opened="true"] { height: 400px }`);
+            $r2.shadowRoot.adoptedStyleSheets = [sheet];
+        });
+    });
+</script>
+
+</html>
