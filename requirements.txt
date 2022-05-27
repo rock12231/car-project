@@ -4,7 +4,7 @@ backports.entry-points-selectable==1.1.1
 certifi==2021.10.8
 charset-normalizer==2.0.7
 distlib==0.3.3
-Django==3.2.7
+Django==4.0.4
 filelock==3.4.0
 gunicorn==20.1.0
 idna==3.3
