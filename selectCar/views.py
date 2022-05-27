@@ -178,7 +178,7 @@ class Prediction(View):
         result = model.predict(UserInput)
         return render(request, 'selectCar/prediction.html',{'result':result})
         
-    
+
     # """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """ #
 
 # 1. Which is the Best Mileage Car  
