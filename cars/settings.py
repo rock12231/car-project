@@ -27,7 +27,6 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 
-
 ALLOWED_HOSTS = ['https://avi-test-pro.herokuapp.com',
                  'avi-test-pro.herokuapp.com',
                  '127.0.0.1']
