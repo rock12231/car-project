@@ -175,7 +175,7 @@ class Prediction(View):
         UserInput.append(engine)
         UserInput.append(max_power)
         UserInput.append(brand)
-        result = model.predict([UserInput])
+        result = model.predict(UserInput)
         return render(request, 'selectCar/prediction.html',{'result':result})
         
     
