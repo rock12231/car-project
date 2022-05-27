@@ -12,7 +12,7 @@ import numpy as np
 
 # Read data from csv file
 df = pd.read_csv("selectCar/data/processed_cardekho.csv")
-model = pickle.load(open('selectCar/data/deepmodel.sav', "rb"))
+# model = pickle.load(open('selectCar/data/deepmodel.sav', "rb"))
 
 # Current car details
 car: dict = {
@@ -137,53 +137,53 @@ class Prediction(View):
     def get(self, request):
         return render(request, 'selectCar/prediction.html')
     
-    def post(self, request):
-        if request.POST["selling_price"]:
-            selling_price = int(request.POST["selling_price"])
-            print(selling_price)
+    # def post(self, request):
+    #     if request.POST["selling_price"]:
+    #         selling_price = int(request.POST["selling_price"])
+    #         print(selling_price)
         
-        if request.POST["km_driven"]:
-            km_driven = int(request.POST["km_driven"])
-            print(km_driven)
+    #     if request.POST["km_driven"]:
+    #         km_driven = int(request.POST["km_driven"])
+    #         print(km_driven)
             
-        if request.POST["transmission"]:
-            transmission = int(request.POST["transmission"])
-            print(transmission)
+    #     if request.POST["transmission"]:
+    #         transmission = int(request.POST["transmission"])
+    #         print(transmission)
             
-        if request.POST["owner"]:
-            owner = int(request.POST["owner"])
-            print(owner)
+    #     if request.POST["owner"]:
+    #         owner = int(request.POST["owner"])
+    #         print(owner)
             
-        if request.POST["mileage"]:
-            mileage = float(request.POST["mileage"])
-            print(mileage)
+    #     if request.POST["mileage"]:
+    #         mileage = float(request.POST["mileage"])
+    #         print(mileage)
             
-        if request.POST["engine"]:
-            engine = int(request.POST["engine"])
-            print(engine)
+    #     if request.POST["engine"]:
+    #         engine = int(request.POST["engine"])
+    #         print(engine)
             
-        if request.POST["max_power"]:
-            max_power = int(request.POST["max_power"])
-            print(max_power)
+    #     if request.POST["max_power"]:
+    #         max_power = int(request.POST["max_power"])
+    #         print(max_power)
             
-        if request.POST["brand"]:
-            brand = int(request.POST["brand"])
-            print(brand)
+    #     if request.POST["brand"]:
+    #         brand = int(request.POST["brand"])
+    #         print(brand)
 	    
-        UserInput = []
-        UserInput.append(km_driven)
-        UserInput.append(transmission)
-        UserInput.append(owner)
-        UserInput.append(mileage)
-        UserInput.append(engine)
-        UserInput.append(max_power)
-        UserInput.append(brand)
-        l=np.array([UserInput])
-        l.reshape(-1, 1)
+    #     UserInput = []
+    #     UserInput.append(km_driven)
+    #     UserInput.append(transmission)
+    #     UserInput.append(owner)
+    #     UserInput.append(mileage)
+    #     UserInput.append(engine)
+    #     UserInput.append(max_power)
+    #     UserInput.append(brand)
+    #     l=np.array([UserInput])
+    #     l.reshape(-1, 1)
 
-        result = model.predict(l)
+    #     result = model.predict(l)
 
-        return render(request, 'selectCar/prediction.html',{'result':result})
+    #     return render(request, 'selectCar/prediction.html',{'result':result})
   
 
     # """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """ #
