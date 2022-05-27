@@ -1,6 +1,6 @@
 from django.urls import path
 from selectCar import views
-from selectCar.views import Home, Car
+from selectCar.views import Home, Car, Prediction
 
 urlpatterns = [
        # Home page URL
@@ -19,4 +19,7 @@ urlpatterns = [
        path('car/data7', views.data7, name='result7'),
        path('car/data8', views.data8, name='result8'),
        path('car/data9', views.data9, name='result9'),
+       
+       # Prediction page URL
+       path('prediction/', Prediction.as_view(), name='prediction'),
 ]

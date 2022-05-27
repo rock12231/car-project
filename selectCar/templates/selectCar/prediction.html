@@ -1,0 +1,77 @@
+{% extends 'selectCar/app-base.html' %}
+{% load static %}
+{% block title %} ML Prediction Page {% endblock %}
+{% block body %}
+
+<section class="vehicles" id="vehicles" style="margin-top: 75px;">
+    <h1 class="heading"> ML Prediction <span></span> </h1>
+    <form action="/prediction/" method="POST" class="mb-3">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="input1">Selling Price</label>
+                <input type="text" name="selling_price" class="form-control" id="input1" placeholder="Selling Price">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="input2">Km Driven</label>
+                <input type="text" name="km_driven" class="form-control" id="input2" placeholder="Km Driven">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="input3">Transmission</label>
+                <input type="text" name="transmission" class="form-control" id="input3" placeholder="Transmission">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="input4">Owner</label>
+                <input type="text" name="owner" class="form-control" id="input4" placeholder="Owner">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="input5">Mileage</label>
+                <input type="text" name="mileage" class="form-control" id="input5" placeholder="Mileage">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="input6">Engine</label>
+                <input type="text" name="engine" class="form-control" id="input6" placeholder="Engine">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="input7">Max Power</label>
+                <input type="text" name="max_power" class="form-control" id="input7" placeholder="Max Power">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="input8">Brand</label>
+                <input type="text" name="brand" class="form-control" id="input8" placeholder="Brand">
+            </div>
+        </div>
+        <div class="text-center">
+            <input class="btn btn-outline-success font-weight-bold" type="submit" value="Predict">
+        </div>
+    </form>
+    {% if car.msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{car.msg}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    <div class="row mt-3">
+        {% if result %}
+        {{result}}
+        {% else %}
+        <div class="col-lg-12 col-md-12 mb-3 mt-3">
+            <div class="card" style="height: 316px;">
+                <div class="card-body d-flex align-items-center">
+                    <img class="rounded mx-auto d-block" src="{% static 'image/nodata.png' %}" alt="No Data">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

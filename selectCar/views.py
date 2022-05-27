@@ -126,6 +126,61 @@ class Car(View):
         car['dataSet'] = len(tempDF)
         return render(request, 'selectCar/car.html',{"car":car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
   
+# Prediction
+class Prediction(View):
+    
+    def get(self, request):
+        return render(request, 'selectCar/prediction.html')
+    
+    def post(self, request):
+        if request.POST["selling_price"]:
+            selling_price = int(request.POST["selling_price"])
+            print(selling_price)
+        
+        if request.POST["km_driven"]:
+            km_driven = int(request.POST["km_driven"])
+            print(km_driven)
+            
+        if request.POST["transmission"]:
+            transmission = int(request.POST["transmission"])
+            print(transmission)
+            
+        if request.POST["owner"]:
+            owner = int(request.POST["owner"])
+            print(owner)
+            
+        if request.POST["mileage"]:
+            mileage = int(request.POST["mileage"])
+            print(mileage)
+            
+        if request.POST["engine"]:
+            engine = int(request.POST["engine"])
+            print(engine)
+            
+        if request.POST["max_power"]:
+            max_power = int(request.POST["max_power"])
+            print(max_power)
+            
+        if request.POST["brand"]:
+            brand = int(request.POST["brand"])
+            print(brand)
+
+	    # model=joblib.load('depmodel.sav')
+	    # l=[]
+	    # l.append(selling_price)
+	    # l.append(km_driven)
+	    # l.append(transmission)
+	    # l.append(owner)
+	    # l.append(mileage)
+	    # l.append(engine)
+	    # l.append(max_power)
+	    # l.append(brand)
+	    # result = model.predict([l])
+        return render(request, 'selectCar/prediction.html',{'result':result})
+
+  
+
+    
     
     # """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """ #
 
