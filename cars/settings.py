@@ -25,12 +25,12 @@ SECRET_KEY = 'django-insecure-s-9n$8t#pf)@kcqkl%0bfg!b6yaqb0pl9bzbdf^r6piivk1%jx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
-# ALLOWED_HOSTS = ['https://carsearchkaro.herokuapp.com',
-#                  'carsearchkaro.herokuapp.com',
-#                  '127.0.0.1']
+ALLOWED_HOSTS = ['https://avi-test-pro.herokuapp.com',
+                 'avi-test-pro.herokuapp.com',
+                 '127.0.0.1']
 
 # Application definition
 
