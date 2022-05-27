@@ -177,10 +177,7 @@ class Prediction(View):
         UserInput.append(brand)
         result = model.predict([UserInput])
         return render(request, 'selectCar/prediction.html',{'result':result})
-
-  
-
-    
+        
     
     # """ --->> Function basded rendering car page with dynamic data & plot Chart.JS Graph and Datatable <<--- """ #
 
