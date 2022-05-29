@@ -458,15 +458,41 @@ Page {% endblock %} {% block body %}
         <iframe class="map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1632137920043!5m2!1sen!2sin"
             allowfullscreen="" loading="lazy"></iframe>
-        <form action="">
+        <form action="/#contact" method="POST">
+            {% csrf_token %}
             <h3>get in touch</h3>
-            <input type="text" placeholder="your name" class="box" />
-            <input type="email" placeholder="your email" class="box" />
-            <input type="tel" placeholder="subject" class="box" />
-            <textarea placeholder="your message" class="box" cols="30" rows="10"></textarea>
-            <input type="submit" value="send message" class="btn" />
+            {% if car.alert %}
+                <div class="alert alert-success" role="alert"> {{car.alert}} </div>
+            {% else %}
+                <div class="alert alert-light" role="alert"> Please Fill all the filed's</div>
+            {% endif %}
+            <input type="text" name="name" placeholder="your name" class="box">
+            <input type="email" name="email" placeholder="your email" class="box">
+            <input type="text" name="subject" placeholder="subject" class="box">
+            <textarea name="message" placeholder="your message" class="box" cols="30" rows="8"></textarea>
+            <input type="submit" value="send message" class="btn">
         </form>
     </div>
 </section>
+
+
+<div class="modal show" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div
 <!-- contact section ends -->
 {% endblock %}

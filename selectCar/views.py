@@ -29,6 +29,7 @@ car: dict = {
 class Home(View):
     
     def get(self, request):
+        car['alert'] = ""
         return render(request, 'selectCar/index.html')
 
     def post(self, request):
@@ -193,6 +194,7 @@ def data1(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 2. Car's showcased according to the Selling Price Range (Min)
@@ -200,6 +202,7 @@ def data2(request):
     tempDF = df.copy()
     tempDF = tempDF[(tempDF["selling_price"]>=400000)].sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 3. Car's showcased according to the Selling Price Range (Max)
@@ -207,6 +210,7 @@ def data3(request):
     tempDF = df.copy()
     tempDF = tempDF[(tempDF["selling_price"]<=800000)].sort_values('mileagev', ascending=False)
     tempDF = tempDF.head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
@@ -215,6 +219,7 @@ def data4(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('selling_price', ascending=False).head()
     tempDF = tempDF.head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
@@ -223,6 +228,7 @@ def data5(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('selling_price', ascending=True).head()
     tempDF = df.sort_values('max_powerv', ascending=False).head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 6. Which are the Max Mileage and Max Power car models?
@@ -230,6 +236,7 @@ def data6(request):
     tempDF = df.copy()
     tempDF = df.sort_values('mileagev', ascending=False).head()
     tempDF=  df.sort_values('max_powerv', ascending=False).head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 
@@ -238,6 +245,7 @@ def data7(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('enginev', ascending=False).head()
     tempDF=  tempDF.sort_values('max_powerv', ascending=False).head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
 
 # 8. Which are the Max Mileage and Max Engine car models?
@@ -245,4 +253,5 @@ def data8(request):
     tempDF = df.copy()
     tempDF = tempDF.sort_values('mileagev', ascending=False).head()
     tempDF=  tempDF.sort_values('enginev', ascending=False).head()
+    car['dataSet'] = len(tempDF)
     return render(request, 'selectCar/car.html',{'car':car, "dataT":tempDF.values.tolist(), "dataY":str(tempDF["selling_price"].values.tolist()), "dataX": str(tempDF["name"].values.tolist())})
